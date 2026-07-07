@@ -1,0 +1,461 @@
+@font-face {
+  font-family: "Overlock";
+  src: local(Overlock), url("../fonts/Overlock-Regular.ttf");
+}
+@font-face {
+  font-family: "Overlock";
+  src: local("Overlock Bold"), url("../fonts/Overlock-Bold.ttf");
+  font-weight: bold;
+}
+
+* {
+  box-sizing: border-box;
+}
+:root {
+  --clr-sale-400: hsl(3, 92%, 30%);
+  --clr-neutral-accent: hsl(40 45% 97%);
+  --clr-accent-400: hsl(39 100% 41%);
+  --clr-accent-300: hsl(39 94% 57%);
+  --clr-neutral-100: hsl(0 0% 100%);
+  --clr-neutral-800: hsl(0 0% 20%);
+  --clr-neutral-900: hsl(0 0% 10%);
+
+  --ff-base: system-ui, sans-serif;
+  --ff-accent: Overlock, serif;
+
+  --fs-200: 0.875rem;
+  --fs-300: 0.925rem;
+  --fs-400: 1rem;
+  --fs-500: 1.25rem;
+  --fs-600: 1.325rem;
+  --fs-700: 2rem;
+  --fs-800: 2.5rem;
+
+  @media (width > 720px) {
+    --fs-300: 1rem;
+    --fs-400: 1.125rem;
+    --fs-500: 1.3125rem;
+    --fs-600: 1.5rem;
+    --fs-700: 2.5rem;
+    --fs-800: 3rem;
+  }
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes move-up {
+  from {
+    translate: 0 100px;
+  }
+  to {
+    translate: 0 0;
+  }
+}
+
+body {
+  color: var(--clr-neutral-800);
+  font-family: var(--ff-base);
+  font-size: var(--fs-400);
+
+  margin: 0;
+  line-height: 1.6;
+}
+
+h1,
+h2 {
+  color: var(--clr-accent-400);
+  font-family: var(--ff-accent);
+  line-height: 1.1;
+}
+
+h1 {
+  font-size: var(--fs-800);
+  text-align: center;
+}
+h1 span {
+  display: block;
+  font-weight: lighter;
+  font-size: 0.75em;
+  color: var(--clr-neutral-800);
+}
+h2 {
+  text-align: center;
+  font-size: var(--fs-700);
+}
+h3 {
+  font-size: var(--fs-600);
+}
+a {
+  color: var(--clr-accent-400);
+}
+a:hover,
+a:focus-visible {
+  color: inherit;
+}
+.lede {
+  font-size: var(--fs-500);
+}
+.page-header {
+  padding-block: 21px;
+  background-color: var(--clr-neutral-900);
+}
+.page-header-layout {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 21px;
+  justify-content: space-between;
+}
+.primary-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  display: flex;
+  gap: 21px;
+}
+.primary-nav a {
+  font-weight: 700;
+  color: var(--clr-neutral-100);
+  text-decoration: none;
+
+  transition: 0.3s ease;
+}
+.primary-nav a:hover,
+.primary-nav a:focus-visible {
+  color: var(--clr-accent-300);
+}
+.hero {
+  animation:
+    fade-in 2s,
+    move-up 2s;
+  padding-block: 100px;
+  background-image: url(../img/chess-bg.jpg);
+  background-size: cover;
+}
+
+.hero-content {
+  opacity: 0;
+  animation:
+    fade-in 2s forwards,
+    move-up 2s;
+  animation-delay: 0.5s;
+
+  text-align: center;
+  background: hsl(0 0% 100% / 0.8);
+  padding: 40px;
+}
+.hero-content > :first-child {
+  margin-block-start: 0;
+}
+
+.hero-content > :last-child {
+  margin-block-end: 0;
+}
+.course {
+  display: grid;
+  gap: 1rem;
+  align-content: end;
+
+  position: relative;
+  color: var(--clr-neutral-100);
+  padding: 100px 21px 21px;
+
+  overflow: clip;
+  isolation: isolate;
+}
+.course img {
+  transition: scale 1s;
+}
+.course img:hover {
+  scale: 1.05;
+}
+.course[data-sale="true"] .course-title::after {
+  content: "Sale";
+  background-color: var(--clr-sale-400);
+  position: absolute;
+  left: 0;
+  top: 55px;
+  padding: 0.25em 0.5em;
+  font-family: var(--ff-accent);
+}
+.course[data-featured="true"] .course-title::after {
+  content: "⭐️" / "Featured course";
+
+  position: absolute;
+  top: 0;
+  right: 50px;
+  background-color: var(--clr-neutral-900);
+  padding: 5px;
+}
+.course > * {
+  margin: 0;
+}
+.course img {
+  z-index: -1;
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.course-tag {
+  z-index: 1;
+  font-family: var(--ff-accent);
+  font-weight: var(--fs-700);
+  position: absolute;
+  top: 10px;
+  left: 0;
+
+  background-color: var(--clr-accent-400);
+  color: var(--clr-neutral-900);
+  padding: 5px 10px;
+}
+.course-title {
+  font-size: var(--fs-400);
+}
+.button {
+  font: inherit;
+  font-weight: 700;
+  text-transform: uppercase;
+  background-color: var(--clr-accent-300);
+  border: 0;
+  padding: 0.75em 1.5em;
+
+  transition: 0.3s ease;
+}
+.button:hover,
+.button:focus-visible {
+  background-color: var(--clr-neutral-800);
+  color: var(--clr-neutral-100);
+}
+.page-footer {
+  background-color: var(--clr-neutral-800);
+  background-image: linear-gradient(var(--clr-neutral-800), black);
+  padding: 100px;
+  margin-top: 21px;
+  color: var(--clr-neutral-100);
+  text-align: center;
+}
+
+.wrapper {
+  max-inline-size: 900px;
+  margin-inline: auto;
+  padding-inline: 1rem;
+}
+.three-columns {
+  display: grid;
+  gap: 21px;
+
+  @media (width > 720px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+/* Instructors page */
+
+.course-instructor {
+  display: grid;
+  row-gap: 5px;
+  column-gap: 20px;
+  text-align: left;
+
+  grid-template-columns: 1fr 2fr;
+  grid-template-areas:
+    "photo title"
+    "photo intro"
+    "credentials philosophy";
+  background-color: var(--clr-neutral-accent);
+  border: 1px solid var(--clr-accent-400);
+  padding: 1rem;
+}
+
+.course-instructor h2,
+.course-instructor h3 {
+  position: relative;
+  text-align: left;
+  margin: 0;
+  padding: 0;
+
+  color: var(--clr-accent-400);
+}
+.course-instructor h2::after {
+  content: "";
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  margin-left: 0.5rem;
+  background: url("../img/awesome.svg") no-repeat center;
+  background-size: contain;
+
+  position: absolute;
+  top: -5px;
+}
+.course-instructor ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  gap: 0.3rem;
+  flex-direction: column;
+}
+.course-instructor ul li {
+  font-size: var(--fs-200);
+  font-weight: 700;
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  column-gap: 0.5rem;
+  align-items: start;
+}
+.course-ins-img {
+  grid-area: photo;
+  aspect-ratio: 4 / 5;
+}
+.course-ins-img img {
+  width: 100%;
+  height: 100%;
+  display: block;
+
+  object-fit: cover;
+}
+.course-ins-title {
+  grid-area: title;
+}
+.course-ins-intro {
+  grid-area: intro;
+}
+.course-ins-philosophy {
+  grid-area: philosophy;
+}
+.course-ins-philosophy-title {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.course-ins-philosophy svg {
+  fill: var(--clr-accent-400);
+  width: 32px;
+  height: 32px;
+}
+.course-ins-credentials {
+  grid-area: credentials;
+}
+.course-ins-credentials svg {
+  width: 32px;
+  height: 32px;
+  fill: var(--clr-accent-400);
+}
+
+/* Instructor's gallery */
+
+.instructor {
+  position: relative;
+
+  overflow: clip;
+  isolation: isolate;
+  aspect-ratio: 1 / 1.25;
+}
+.instructor h2 {
+  margin-bottom: 5px;
+  line-height: 1;
+
+  font-size: var(--fs-600);
+  color: var(--clr-neutral-100);
+}
+.instructor-title--accent {
+  display: inline-block;
+  padding: 2px 5px;
+  color: var(--clr-neutral-800);
+  background-color: var(--clr-accent-300);
+
+  border-radius: 2px;
+}
+.instructor .instructor-description {
+  position: absolute;
+  z-index: 1;
+
+  color: var(--clr-neutral-100);
+}
+.instructor-title {
+  text-align: left;
+}
+.instructor-description {
+  top: 180px;
+  left: 20px;
+
+  font-size: var(--fs-200);
+}
+.instructor-description p {
+  margin: 0;
+}
+.instructor img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+  transition: scale 1s ease;
+}
+
+.instructor img:hover {
+  scale: 1.1;
+}
+
+@media (width < 720px) {
+  .course-instructor {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "title"
+      "photo"
+      "credentials"
+      "intro"
+      "philosophy";
+    gap: 1rem;
+    background-color: transparent;
+    border: none;
+  }
+  h1 {
+    margin-bottom: 0;
+  }
+  p {
+    margin: 1rem auto;
+  }
+  .course-instructor h2,
+  .course-instructor h3 {
+    text-align: center;
+  }
+  .course-instructor ul {
+    gap: 1rem;
+  }
+  .course-instructor ul li:last-child svg {
+    width: 33px;
+  }
+  .course-instructor ul li {
+    align-items: center;
+    padding: 5px;
+    border-radius: 3px;
+    font-weight: 400;
+    line-height: 1;
+    background-color: var(--clr-accent-300);
+    color: var(--clr-neutral-800);
+  }
+  .course-ins-credentials svg {
+    fill: var(--clr-accent-400);
+  }
+  .course-ins-philosophy-title {
+    display: flex;
+    align-items: center;
+  }
+  .instructor-description {
+    top: auto;
+    bottom: 50px;
+    left: 20px;
+  }
+  .instructor-description h2 {
+    font-size: var(--fs-700);
+  }
+}
